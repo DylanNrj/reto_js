@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saludos Personalizado</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            padding: 50px;
+            font-size: 10px;
+        }
+
+        h1 {
+            font-size: 10px;
+            text-align: center;
+
+        }
+
+        .boton {
+            position: absolute;
+            top: 15%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>¡Bienvenido!</h1>
+
+    <form id="saludoForm">
+        <li>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="user_name" />
+        </li>
+
+        <div>
+            <input class="boton" type="button" value="Saludar" onclick="saludar()" />
+        </div>
+    </form>
+
+
+
+    <script>
+        function saludar() {
+            var name = document.getElementById("name").value;
+
+            if (name) {
+                var { texto, imagen } = horario();
+                var saludo = "¡" + texto + ", " + name + "!";
+                var nuevaPestana = window.open("", "_blank");
+
+                nuevaPestana.document.write("<style>body {font-size: 10px;}</style>");
+                nuevaPestana.document.write("<h1>" + saludo + "</h1>" + texto + "");
+            } else {
+                alert("Por favor, ingrese un nombre antes de saludar.");
+            }
+        }
+
+        function horario() {
+            var fecha = new Date();
+            var hora = fecha.getHours();
+            var texto, imagen;
+
+            if (hora < 12) {
+                texto = "Buenos Días";
+            } else if (hora >= 12 && hora < 18) {
+                texto = "Buenas Tardes";
+            } else {
+                texto = "Buenas Noches";
+            }
+            return { texto };
+        }
+    </script>
+</body>
+
+</html>
